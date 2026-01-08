@@ -4,6 +4,7 @@ require("dotenv").config()
 const prisma = require("./prisma")
 const authRoutes = require("./routes/auth.routes")
 const appointmentRoutes = require("./routes/appointment.routes")
+const caseRoutes = require("./routes/case.routes")
 
 const app = express()
 
@@ -31,6 +32,7 @@ app.use("/auth", authRoutes)
 
 //register route in app
 app.use("/appointments", appointmentRoutes)
+app.use("/cases", caseRoutes)
 
 // Global error handler
 app.use((err, req, res, next) => {
