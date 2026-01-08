@@ -1,4 +1,6 @@
 const prisma = require("../prisma")
+const AppError = require("../utils/AppError")
+
 //all critical rules like cases assuring
 const createCase = async (
     doctorId,
@@ -75,7 +77,7 @@ const updateCaseStatus = async (caseId, doctorId, newStatus) => {
     })
 
     if (!medicalCase) {
-        throw new Error("Case not found")
+        throw new AppError("Case not found", 404)
     }
 
     if (medicalCase.doctorId !== doctorId) {

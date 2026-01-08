@@ -12,6 +12,12 @@ const createAppointment = async (req, res, next) => {
     } catch (e) {
         next(e)
     }
+//added appointment validation
+    if (!appointmentDate) {
+        return next(new AppError("Appointment date is required"))
+    }
+
+
 }
 //assigning to doctor
 const assignDoctor = async (req, res, next) => {

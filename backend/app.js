@@ -5,6 +5,7 @@ const prisma = require("./prisma")
 const authRoutes = require("./routes/auth.routes")
 const appointmentRoutes = require("./routes/appointment.routes")
 const caseRoutes = require("./routes/case.routes")
+const errorHandler = require("./middlewares/error.middleware")
 
 const app = express()
 
@@ -44,5 +45,6 @@ app.use((err, req, res, next) => {
         message: err.message || "Internal Server Error",
     })
 })
+app.use(errorHandler)
 
 module.exports = app
