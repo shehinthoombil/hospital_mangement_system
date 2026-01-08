@@ -12,7 +12,7 @@ const createAppointment = async (req, res, next) => {
     } catch (e) {
         next(e)
     }
-//added appointment validation
+    //added appointment validation
     if (!appointmentDate) {
         return next(new AppError("Appointment date is required"))
     }

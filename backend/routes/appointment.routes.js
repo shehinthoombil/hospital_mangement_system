@@ -7,7 +7,6 @@ const controller = require("../controllers/appointment.controller")
 
 router.use(authenticate)
 //role based controlling
-
 // USER
 router.post("/", authorize(["USER"]), controller.createAppointment)
 router.get("/my", authorize(["USER"]), controller.listUserAppointments)
