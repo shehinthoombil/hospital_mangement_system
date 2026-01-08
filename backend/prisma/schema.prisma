@@ -39,6 +39,7 @@ model User {
     createdAppointments  Appointment[] @relation("CreatedAppointments")
     assignedAppointments Appointment[] @relation("AssignedAppointments")
     cases                Case[]
+    // cases Case[] @relation("UserCases")
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -69,14 +70,21 @@ model Appointment {
 }
 
 model Case {
-    id            String     @id @default(uuid())
-    appointmentId String     @unique
-    doctorId      String
-    status        CaseStatus @default(OPEN)
-    description   String?
+    id String @id @default(uuid())
 
-    appointment Appointment @relation(fields: [appointmentId], references: [id])
-    doctor      User        @relation(fields: [doctorId], references: [id])
+    appointmentId String      @unique
+    appointment   Appointment @relation(fields: [appointmentId], references: [id])
+
+    doctorId String
+    doctor   User   @relation(fields: [doctorId], references: [id])
+    //doctor  User @relation("DoctorCases", fields: [doctorId], references: [id])
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+    // user User @relation("UserCases", fields: [userId], references: [id])
+
+    status      CaseStatus @default(OPEN)
+    description String?
 
     isDeleted Boolean @default(false)
 
