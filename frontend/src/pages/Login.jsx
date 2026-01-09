@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -16,9 +17,9 @@ const Login = () => {
         try {
             const res = await api.post("/auth/login", { email, password });
             login(res.data.token);
-
+            
+             // role based redirect
             const role = JSON.parse(atob(res.data.token.split(".")[1])).role;
-
             if (role === "DOCTOR") navigate("/doctor");
             else if (role === "ADMIN") navigate("/admin");
             else navigate("/user");
@@ -50,6 +51,13 @@ const Login = () => {
                 <button className="bg-black text-white w-full p-2">
                     Login
                 </button>
+
+                <p className="mt-2 text-sm">
+                    Don't have an account?{" "}
+                    <Link to="/register" className="text-blue-600">
+                        Register
+                    </Link>
+                </p>
             </form>
         </div>
     );
