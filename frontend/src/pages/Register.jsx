@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -29,25 +30,25 @@ export default function Register() {
 
                 <input
                     placeholder="Name"
-                    className="input"
+                    className="border p-2 w-full mb-3 mt-2"
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
 
                 <input
                     placeholder="Email"
-                    className="input mt-2"
+                    className="border p-2 w-full mb-3 mt-2"
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
 
                 <input
                     type="password"
                     placeholder="Password"
-                    className="input mt-2"
+                    className="border p-2 w-full mb-3 mt-2"
                     onChange={(e) => setForm({ ...form, password: e.target.value })}
                 />
 
                 <select
-                    className="input mt-2"
+                    className="border p-2 w-full mb-3 mt-2"
                     onChange={(e) => setForm({ ...form, role: e.target.value })}
                 >
                     <option value="USER">User</option>
@@ -55,7 +56,7 @@ export default function Register() {
                     <option value="ADMIN">Admin</option>
                 </select>
 
-                <button className="btn mt-4 w-full" onClick={submit}>
+                <button className="bg-black text-white w-full p-2" onClick={submit}>
                     Register
                 </button>
             </div>

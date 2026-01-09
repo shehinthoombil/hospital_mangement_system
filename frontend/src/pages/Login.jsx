@@ -17,9 +17,10 @@ const Login = () => {
         try {
             const res = await api.post("/auth/login", { email, password });
             login(res.data.token);
-            
-             // role based redirect
+            console.log(res.data);
+            // role based redirect
             const role = JSON.parse(atob(res.data.token.split(".")[1])).role;
+            // const role = res.data.user.role;
             if (role === "DOCTOR") navigate("/doctor");
             else if (role === "ADMIN") navigate("/admin");
             else navigate("/user");
@@ -51,6 +52,7 @@ const Login = () => {
                 <button className="bg-black text-white w-full p-2">
                     Login
                 </button>
+                {/* <button onClick={submit}>Login</button> */}
 
                 <p className="mt-2 text-sm">
                     Don't have an account?{" "}
